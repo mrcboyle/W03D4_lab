@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Upcoming Events</h1>
+
+<form action="/events" method="post">
+    <label for="date">Date</label>
+    <br>
+    <input type="date" name="date" id="date">
+    <br>
+    <label for="name_of_event">Name of Event</label>
+    <br>
+    <input type="text" name="name_of_event" id="name_of_event">
+    <br>
+    <label for="no_of_guests">Number of Guests</label>
+    <br>
+    <input type="text" name="no_of_guests" id="no_of_guests">
+    <br>
+    <label for="room_location">Room Location</label>
+    <br>
+    <input type="text" name="room_location" id="room_location">
+    <br>
+    <label for="description">Description</label>
+    <br>
+    <textarea name="description" rows="4" cols="40"></textarea>
+    <br>
+    <label for="recurring">Recurring Event?</label>
+    <br>
+    <h4>True</h4>
+    <input type="checkbox" name="recurring" id="recurring" value="True">
+    <h4>False</h4>
+    <input type="checkbox" name="recurring" id="recurring" value="False">
+    <br>
+    <input type="submit" value="Add Event">
+
+
+
+</form>
+
+
+{% for event in events %}
+
+<div>
+    <p>
+        Date: {{ event.date }}
+        <br>
+        Name of Event: {{ event.name_of_event }}
+        <br>
+        Number of Guests: {{ event.no_of_guests }}
+        <br>
+        Room Location: {{ event.room_location }}
+        <br>
+        Description: {{ event.description }}
+        <br>
+        {% if event.recurring %}
+        Recurring: &#9989;
+        {% else %}
+        Recurring: &#10060;
+        {% endif %}
+    </p>
+
+</div>
+{% endfor %}
+
+{% endblock %}
